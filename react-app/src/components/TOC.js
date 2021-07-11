@@ -2,12 +2,18 @@ import { Component } from 'react';
 
 class TOC extends Component {
     render() {
+        var lists = [];
+        var data1 = this.props.data; //App.js 파일에 TOC component의 props data를 불러옴
+        var i = 0;
+        while(i < data1.length) {
+            lists.push(<li key={data1[i].id}><a href={"/content/"+data1[i].id}>{data1[i].title}</a> - {data1[i].desc}</li>);
+            //key 를 사용하는 이유는 React에서 자동으로 list를 생성할 때, 구분값을 요구하기 떄문
+            i = i + 1;
+        }
       return (
         <nav>
           <ul>
-            <li><a href="1.html">HTML</a></li>
-            <li><a href="2.html">CSS</a></li>
-            <li><a href="3.html">Javascript</a></li>
+            {lists}
         </ul>
       </nav>
       );
